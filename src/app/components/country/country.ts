@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
 import { tap, catchError, map } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -14,7 +14,10 @@ import { Country as CountryModel } from 'src/app/core/models/Country';
 export class Country implements OnInit {
   countryList: CountryModel[] = [];
 
-  constructor(private countryService: CountryService) {}
+  constructor(
+    private countryService: CountryService,
+    private changesDetectorRef: ChangeDetectorRef,
+  ) {}
 
   ngOnInit(): void {
     this.fetchCountry();
@@ -25,13 +28,13 @@ export class Country implements OnInit {
       .getAllCountries()
       .pipe(
         tap(() => console.log('Fetching countries...')),
-        tap((countryResponseList: CountryModel[]) =>
-          console.log(`Received ${countryResponseList.length} countries`),
-        ),
-        tap((countryResponseList: CountryModel[]) => {
-          console.log(`Received countries table:`);
-          console.table({ countryResponseList });
-        }),
+        // tap((countryResponseList: CountryModel[]) =>
+        //   console.log(`Received ${countryResponseList.length} countries`),
+        // ),
+        // tap((countryResponseList: CountryModel[]) => {
+        //   console.log(`Received countries table:`);
+        //   console.table({ countryResponseList });
+        // }),
         map((countryResponseList: CountryModel[]) =>
           countryResponseList.sort((a, b) =>
             a.name.common.localeCompare(b.name.common),
@@ -43,9 +46,10 @@ export class Country implements OnInit {
         }),
       )
       .subscribe((countryResponseList) => {
-        console.log('countryResponseList:', countryResponseList);
-        console.log(countryResponseList[0]);
+        // console.log('countryResponseList:', countryResponseList);
+        // console.log(countryResponseList[0]);
         this.countryList = countryResponseList;
+        this.changesDetectorRef.markForCheck();
       });
   }
 }
