@@ -1,0 +1,133 @@
+<div class="flex flex-col gap-2">
+  <p>recall-and-differences works!</p>
+
+  <p>USING DECORATOR @Input() :: Meesage from parent:: {{ message }}</p>
+  <p>Text from parent:: {{ text }}</p>
+  <p class="text-green-700">
+    otherUserMessage from parent:: {{ otherUserMessage }}
+  </p>
+  <p class="text-red-500">
+    USING DECORATOR @Output() :: Type to send output message ::
+    <input
+      type="text"
+      class="rounded border border-gray-300 p-2"
+      (input)="messageEvent.emit($event.target.value)"
+    />
+  </p>
+  <button
+    class="w-1/2 rounded bg-amber-500 p-2 hover:bg-amber-600"
+    (click)="handleLogin()"
+  >
+    LOGIN
+  </button>
+  <button
+    class="w-1/2 rounded bg-indigo-500 p-2 hover:bg-indigo-600"
+    (click)="handleLoginsSignal()"
+  >
+    LOGIN with SIGNAL
+  </button>
+
+  <p>USING SIGNALS :: Meesage from parent:: {{ signalMsgFromParent() }}</p>
+  <p>USING SIGNALS :: Object from parent:: {{ signalObject()?.name }}</p>
+
+  <p>
+    Calling the variable in the .ts with string interpolation::
+    {{ userName }}
+  </p>
+
+  <p>
+    Using the varaible value in the input with the property data binding
+    [value]="userName" ::
+    <input
+      type="text"
+      class="rounded border border-gray-300 p-2"
+      [value]="userName"
+    />
+  </p>
+
+  <p>
+    Updating the variable with double data binding, by importing the import
+    FormsModule from '@angular/forms'; ::
+    <input
+      type="text"
+      class="rounded border border-gray-300 p-2"
+      [(ngModel)]="userName"
+    />
+  </p>
+
+  <div class="flex gap-2">
+    <button
+      class="w-1/2 cursor-pointer rounded bg-blue-500 p-2 text-white hover:bg-blue-600"
+      (click)="addOne()"
+    >
+      Add one to the number count
+    </button>
+
+    <input
+      type="text"
+      class="rounded border border-gray-300 p-2"
+      placeholder="Add number while typing"
+      (input)="addOne()"
+    />
+  </div>
+
+  <h1 class="cursor-pointer" (click)="addOne()">Number: {{ number }}</h1>
+
+  <hr />
+
+  <p>If in the V16 and earlier versions way</p>
+  <h2 *ngIf="condition">
+    OLD WAY The condition is met, by importing the import CommonModule from
+    '@angular/common';
+  </h2>
+
+  <p>If in the 17+ version way</p>
+  @if (condition) {
+    <h2>The condition is met</h2>
+  } @else if (condition2) {
+    <h2>The condition is else if</h2>
+  } @else {
+    <h2>The condition is not met</h2>
+  }
+
+  <hr />
+
+  <div>
+    <div>
+      <h2>The movie list old way v16- ::</h2>
+      <ul>
+        <li *ngFor="let movie of movies; let index = index">
+          {{ index + 1 }} - {{ movie }}
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2>The movie list with new directive for v17+ ::</h2>
+      <ul>
+        @for (movie of movies; track $index) {
+          <li>{{ $index }} - {{ movie }}</li>
+        }
+      </ul>
+    </div>
+  </div>
+
+  <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    @for (animal of animals; track animal.id) {
+      <li
+        class="flex flex-col gap-2 rounded-xl border border-gray-300 bg-gray-50 p-4"
+      >
+        <h2>{{ animal.id }} - {{ animal.name }}</h2>
+        <img [src]="animal.image" alt="Animal image of: {{ animal.name }}" />
+      </li>
+    }
+  </ul>
+
+  <hr />
+
+  <hr />
+
+  <hr />
+
+  <hr />
+</div>
