@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Movie } from '@models/Movie';
 
 @Component({
@@ -21,8 +26,11 @@ export class ReactiveForms {
   // });
 
   constructor() {
-    this.name = new FormControl('');
-    this.duration = new FormControl('');
+    this.name = new FormControl('', Validators.required);
+    this.duration = new FormControl('', [
+      Validators.required,
+      Validators.max(5),
+    ]);
     this.director = new FormControl('');
 
     this.movieForm = new FormGroup({
@@ -34,5 +42,6 @@ export class ReactiveForms {
 
   handleSubmit() {
     alert(this.movieForm.value.name);
+    this.movieForm.reset();
   }
 }

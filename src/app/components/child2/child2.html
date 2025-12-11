@@ -1,0 +1,5 @@
+<p>child2 works!</p>
+<p>{{ productService.product.name }}</p>
+
+<input type="text" [(ngModel)]="newName" />
+<button (click)="productService.setProductName(newName)">Send</button>

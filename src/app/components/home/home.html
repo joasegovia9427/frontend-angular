@@ -1,0 +1,53 @@
+<p>home inner works!</p>
+<div
+  class="flex h-full w-full flex-col items-center justify-start gap-2 bg-gray-100 p-4"
+>
+  <hr class="w-full border-t border-gray-300" />
+
+  <h1>Hello World</h1>
+
+  <hr class="w-full border-t border-gray-300" />
+
+  <app-child1></app-child1>
+
+  <hr class="w-full border-t border-gray-300" />
+
+  <app-child2></app-child2>
+
+  <hr class="w-full border-t border-gray-300" />
+
+  <app-reactive-forms></app-reactive-forms>
+
+  <hr class="w-full border-t border-gray-300" />
+
+  <p class="text-green-700">
+    Type message for child ::
+    <input
+      type="text"
+      class="rounded border border-gray-300 p-2"
+      [(ngModel)]="outPutMessage"
+    />
+  </p>
+
+  <hr class="w-full border-t border-gray-300" />
+  <p class="text-red-500">Message from child:: {{ messageFromChild }}</p>
+  <hr class="w-full border-t border-gray-300" />
+
+  <!-- message="Message from father component"
+  text="text from father component" 
+  otherUserMessage="{{ outPutMessage }}" -->
+  <app-recall-and-differences
+    [message]="'Message from father component'"
+    [text]="'text from father component'"
+    [otherUserMessage]="outPutMessage"
+    (messageEvent)="onMessageEvent($event)"
+    [signalMsgFromParent]="'signal text from parent'"
+    [signalObject]="person"
+    (login)="parentHandleLogin($event)"
+    (signalLogged)="parentHandleLogin($event)"
+  />
+
+  <hr class="w-full border-t border-gray-300" />
+
+  <!-- <app-country></app-country> -->
+</div>
