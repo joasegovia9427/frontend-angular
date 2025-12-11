@@ -4,15 +4,19 @@ import { tap, catchError, map } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { CountryService } from 'src/app/core/services/country/country.service';
 import { Country as CountryModel } from 'src/app/core/models/Country';
+import { ROUTES_PATHS } from 'src/app/core/models/routes';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-country',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './country.html',
   styleUrl: './country.css',
 })
 export class Country implements OnInit {
   countryList: CountryModel[] = [];
+
+  paths = ROUTES_PATHS;
 
   constructor(
     private countryService: CountryService,
@@ -35,6 +39,12 @@ export class Country implements OnInit {
         //   console.log(`Received countries table:`);
         //   console.table({ countryResponseList });
         // }),
+        // map((countryResponseList: CountryModel[]) =>
+        //   countryResponseList.map((country) => ({
+        //     ...country,
+        //     id: country.cca3,
+        //   })),
+        // ),
         map((countryResponseList: CountryModel[]) =>
           countryResponseList.sort((a, b) =>
             a.name.common.localeCompare(b.name.common),

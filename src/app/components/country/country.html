@@ -6,39 +6,41 @@
   <ul class="grid grid-cols-1 items-start gap-6 sm:grid-cols-2 lg:grid-cols-3">
     @for (country of countryList; track $index) {
       <li class="rounded-lg bg-white shadow-sm">
-        <div class="flex flex-col divide-y divide-gray-200">
-          <div class="flex w-full items-center justify-between p-6">
-            <div class="flex-1 space-y-3 truncate">
-              <div class="flex items-center justify-between space-x-3">
-                <h3 class="truncate text-sm font-medium text-gray-900">
-                  {{ country.name.common }}
-                </h3>
-                <span
-                  class="inline-flex shrink-0 items-center rounded-full bg-green-50 px-1.5 py-0.5 text-xs font-medium text-green-700 ring-1 ring-green-600/20 ring-inset"
-                >
-                  {{ country.region }}
-                </span>
-              </div>
-              <div class="flex items-center justify-between">
-                <div class="">
-                  <p class="truncate text-sm">
-                    Capital: {{ country.capital || 'No capital' }}
-                    <br />
-                    Population: {{ country.population.toLocaleString() }}
-                    <br />
-                  </p>
-                </div>
-                @if (country.flag) {
-                  <div
-                    class="flex size-10 shrink-0 items-center justify-center rounded-full bg-gray-50 text-2xl outline-1 -outline-offset-1 outline-black/5"
+        <a routerLink="{{ paths.COUNTRY }}/{{ $index }}">
+          <div class="flex flex-col divide-y divide-gray-200">
+            <div class="flex w-full items-center justify-between p-6">
+              <div class="flex-1 space-y-3 truncate">
+                <div class="flex items-center justify-between space-x-3">
+                  <h3 class="truncate text-sm font-medium text-gray-900">
+                    {{ country.name.common }}
+                  </h3>
+                  <span
+                    class="inline-flex shrink-0 items-center rounded-full bg-green-50 px-1.5 py-0.5 text-xs font-medium text-green-700 ring-1 ring-green-600/20 ring-inset"
                   >
-                    {{ country.flag }}
+                    {{ country.region }}
+                  </span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="">
+                    <p class="truncate text-sm">
+                      Capital: {{ country.capital || 'No capital' }}
+                      <br />
+                      Population: {{ country.population.toLocaleString() }}
+                      <br />
+                    </p>
                   </div>
-                }
+                  @if (country.flag) {
+                    <div
+                      class="flex size-10 shrink-0 items-center justify-center rounded-full bg-gray-50 text-2xl outline-1 -outline-offset-1 outline-black/5"
+                    >
+                      {{ country.flag }}
+                    </div>
+                  }
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </a>
       </li>
     }
   </ul>

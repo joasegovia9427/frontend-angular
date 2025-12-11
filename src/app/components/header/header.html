@@ -4,9 +4,28 @@
   Toggle Theme
 </button>
 
-<header>
-  <nav>
-    <li><a routerLink="/{{ ROUTES_PATHS.HOME }}">Home</a></li>
-    <li><a routerLink="/{{ ROUTES_PATHS.COUNTRY }}">Country List</a></li>
+<header class="m-2">
+  <nav class="flex list-none flex-row">
+    <!-- <li
+      class="mr-2 w-40 cursor-pointer bg-blue-400 p-2 text-center hover:bg-blue-600"
+    >
+      <a routerLink="/{{ paths.HOME }}">Home</a>
+    </li>
+    <li
+      class="mr-2 w-40 cursor-pointer bg-blue-400 p-2 text-center hover:bg-blue-600"
+    >
+      <a routerLink="/{{ paths.COUNTRY }}">Country List</a>
+    </li> -->
+
+    <a
+      routerLink="/{{ paths.HOME }}"
+      class="mr-2 w-40 cursor-pointer bg-blue-400 p-2 text-center hover:bg-blue-600"
+      >Home</a
+    >
+    <a
+      routerLink="/{{ paths.COUNTRY }}"
+      class="mr-2 w-40 cursor-pointer bg-blue-400 p-2 text-center hover:bg-blue-600"
+      >Country List</a
+    >
   </nav>
 </header>
