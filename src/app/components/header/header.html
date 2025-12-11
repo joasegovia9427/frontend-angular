@@ -1,1 +1,5 @@
-<p>header works!</p>
+<p [ngClass]="{ dark: isDark }">header works!</p>
+
+<button class="rounded bg-amber-800 p-3 text-white" (click)="toggleTheme()">
+  Toggle Theme
+</button>

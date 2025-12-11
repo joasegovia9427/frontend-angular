@@ -8,13 +8,7 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Person } from '../../app';
-
-interface Animal {
-  id: number;
-  name: string;
-  image: string;
-}
+import { Person, Animal, Product } from '@models/index';
 
 @Component({
   selector: 'app-recall-and-differences',
@@ -31,11 +25,13 @@ export class RecallAndDifferences {
   @Output() login: EventEmitter<Person> = new EventEmitter<Person>();
 
   //SINALS
+  //if we put a input.required<type we are saying that the signal is required and the parent must provide it, otherwise Angular will throw an error
+  // signalMsgFromParent = input.required<string>('initial text');
   signalMsgFromParent = input<string>('initial text');
   signalObject = input<Person>();
   signalLogged = output<Person>();
 
-  userName: string = 'Joaquin simple text';
+  userName: string;
   number: number = 0;
   condition: boolean = true; //false;
   condition2: string = 'foo'; // "";
@@ -64,6 +60,16 @@ export class RecallAndDifferences {
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZ0WXsKfxGE4gjbY_KJqSM8y2DLPDvSwPy8A&s',
     },
   ];
+  product: Product;
+
+  constructor() {
+    this.userName = 'Joaquin simple text';
+    this.product = {
+      name: 'Laptop',
+      price: 1000,
+      isForSale: true,
+    };
+  }
 
   addOne() {
     this.number++;

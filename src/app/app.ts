@@ -4,12 +4,9 @@ import { RouterOutlet } from '@angular/router';
 import { Header } from './components/header/header';
 import { FormsModule } from '@angular/forms';
 import { RecallAndDifferences } from './components/recall-and-differences/recall-and-differences';
-
-export interface Person {
-  name: string;
-  age: number;
-  logged?: boolean;
-}
+import { Person } from '@models/Person';
+import { ReactiveForms } from './components/reactive-forms/reactive-forms';
+import { Country } from './components/country/country';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +16,8 @@ export interface Person {
     FormsModule,
     CommonModule,
     RecallAndDifferences,
+    ReactiveForms,
+    Country,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
